@@ -1,0 +1,63 @@
+stages:
+  - build
+  - test
+  - package
+  - production
+
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+cache:
+  key: ${CI_PROJECT_ID}
+  paths:
+    - .m2/repository/
+    - target/
+
+.default-job:
+  image: maven:latest
+  tags:
+    - docker
+
+build:
+  extends: .default-job
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS compile
+
+test:
+  extends: .default-job
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS test
+
+package-jar:
+  extends: .default-job
+  stage: package
+  script:
+    - mvn $MAVEN_CLI_OPTS package
+
+  artifacts:
+    paths:
+      - target/toolfloweditor*
+      #  only:
+#    - master
+
+pages:
+  image: gradle:alpine
+  stage: production
+#  only:
+#    - master
+  except:
+    - schedules
+  dependencies:
+    - package-jar
+  script:
+    - mkdir public
+    - cp -rv target/toolfloweditor* public
+
+  artifacts:
+    paths:
+      - public
+  tags:
+    - linux

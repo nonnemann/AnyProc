@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="EditorView">
+  <grid id="27dc6" binding="editorFramePanel" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="10" left="10" bottom="10" right="10"/>
+    <constraints>
+      <xy x="20" y="20" width="849" height="526"/>
+    </constraints>
+    <properties>
+      <background color="-13289414"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="74178" class="javax.swing.JMenuBar" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11907504"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="e13ef" class="javax.swing.JMenu" binding="fileMenu" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <background color="-11907504"/>
+              <foreground color="-1513240"/>
+              <text value="File"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="fc85" class="javax.swing.JMenuItem" binding="newToolchainItem">
+                <constraints/>
+                <properties>
+                  <background color="-11907504"/>
+                  <foreground color="-1513240"/>
+                  <text value="New Toolchain"/>
+                </properties>
+              </component>
+              <component id="c0840" class="javax.swing.JMenuItem" binding="loadToolchainItem">
+                <constraints/>
+                <properties>
+                  <background color="-11907504"/>
+                  <foreground color="-1513240"/>
+                  <text value="Load Toolchain"/>
+                </properties>
+              </component>
+              <component id="5e9f1" class="javax.swing.JMenuItem" binding="saveToolchainItem">
+                <constraints/>
+                <properties>
+                  <background color="-11907504"/>
+                  <foreground color="-1513240"/>
+                  <text value="SaveToolchain"/>
+                </properties>
+              </component>
+              <component id="76ee6" class="javax.swing.JMenuItem" binding="exitEditorItem">
+                <constraints/>
+                <properties>
+                  <background color="-11907504"/>
+                  <foreground color="-1513240"/>
+                  <text value="Exit"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="6626b" class="javax.swing.JMenu" binding="editMenu" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <background color="-11907504"/>
+              <foreground color="-1513240"/>
+              <text value="Edit"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="d3b0e" class="javax.swing.JMenuItem" binding="executeToolchainItem">
+                <constraints/>
+                <properties>
+                  <background color="-11907504"/>
+                  <foreground color="-1513240"/>
+                  <text value="Execute Toolchain"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <component id="c243a" class="javax.swing.JCheckBox" binding="edgeModeBox">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Draw Connections"/>
+        </properties>
+      </component>
+      <scrollpane id="2ed29">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="1000" height="300"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <grid id="37852" binding="graphPoolPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <autoscrolls value="false"/>
+              <background color="-11907504"/>
+            </properties>
+            <clientProperties>
+              <html.disable class="java.lang.Boolean" value="false"/>
+            </clientProperties>
+            <border type="none">
+              <font/>
+              <title-color color="-4473925"/>
+              <color color="-16777216"/>
+            </border>
+            <children/>
+          </grid>
+        </children>
+      </scrollpane>
+      <component id="999f3" class="javax.swing.JCheckBox" binding="connectionModeBox">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Show Advanced Connection Options"/>
+        </properties>
+      </component>
+      <grid id="63344" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="1000" height="150"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11907504"/>
+        </properties>
+        <border type="line">
+          <font/>
+          <title-color color="-4473925"/>
+          <color color="-16777216"/>
+        </border>
+        <children>
+          <grid id="3cb6f" binding="toolPoolPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="1000" height="150"/>
+              </grid>
+              <gridbag top="15" left="0" bottom="15" right="0" weightx="1.0" weighty="1.0"/>
+            </constraints>
+            <properties>
+              <background color="-11907504"/>
+            </properties>
+            <border type="none">
+              <font/>
+              <title-color color="-4473925"/>
+              <color color="-16777216"/>
+            </border>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <grid id="fb5a2" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="1000" height="150"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11907504"/>
+        </properties>
+        <border type="line">
+          <font/>
+          <title-color color="-4473925"/>
+          <color color="-16777216"/>
+        </border>
+        <children>
+          <grid id="2ccfb" binding="dataPoolPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="1000" height="150"/>
+              </grid>
+              <gridbag top="15" left="0" bottom="15" right="0" weightx="1.0" weighty="1.0"/>
+            </constraints>
+            <properties>
+              <background color="-11907504"/>
+            </properties>
+            <border type="none">
+              <font/>
+              <title-color color="-4473925"/>
+              <color color="-16777216"/>
+            </border>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

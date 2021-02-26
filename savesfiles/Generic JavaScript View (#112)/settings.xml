@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+<entry key="node_file" type="xstring" value="settings.xml"/>
+<config key="flow_stack"/>
+<config key="internal_node_subsettings">
+<entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+</config>
+<config key="model">
+<entry key="hideInWizard" type="xboolean" value="false"/>
+<entry key="generateView" type="xboolean" value="false"/>
+<entry key="maxRows" type="xint" value="1000000"/>
+<entry key="jsCode" type="xstring" value="// the imports.%%00010// per default, this node uses the latest vega-lite version%%00010requirejs.config({%%00010  paths: {%%00010    &quot;vega-embed&quot;:  &quot;https://cdn.jsdelivr.net/npm/vega-embed@latest?noext&quot;,%%00010    &quot;vega-lib&quot;: &quot;https://cdn.jsdelivr.net/npm/vega-lib?noext&quot;,%%00010    &quot;vega-lite&quot;: &quot;https://cdn.jsdelivr.net/npm/vega-lite@4.17.0?noext&quot;,%%00010    &quot;vega&quot;: &quot;https://cdn.jsdelivr.net/npm/vega@latest?noext&quot;,%%00010    &quot;revize&quot;: &quot;https://vis-au.github.io/toolchaining/lib/revize.js?noext&quot;%%00010  }%%00010});%%00010%%00010// transform array data into tabular format%%00010const columnNames = knimeDataTable.getColumnNames();%%00010const rows = knimeDataTable.getRows();%%00010%%00010const items = rows.map(d =&gt; {%%00010%%00009const item = {};%%00010%%00009const values = d.data;%%00010%%00010%%00009values.forEach((value, i) =&gt; {%%00010%%00009%%00009const column = columnNames[i];%%00010%%00009%%00009item[column] = value;%%00010%%00009});%%00010%%00010%%00009return item;%%00010});%%00010%%00010// setup the DOM for the vega-lite renderer%%00010const visContainer = document.createElement(&quot;div&quot;);%%00010visContainer.id = &quot;vis&quot;;%%00010document.body.appendChild(visContainer);%%00010%%00010// create variables for encodings%%00010const encodingXType = &quot;$${Sencoding_x_type}$$&quot; || &quot;quantitative&quot;;%%00010const encodingYType = &quot;$${Sencoding_y_type}$$&quot; || &quot;quantitative&quot;;%%00010const encodingX = { field: &quot;$${Sencoding_x}$$&quot;, type: encodingXType } || null;%%00010const encodingY = { field: &quot;$${Sencoding_y}$$&quot;, type: encodingYType } || null;%%00010const encodingColor = { field: &quot;$${Sencoding_color}$$&quot;, type: &quot;nominal&quot; } || null;%%00010%%00010const encodings = {%%00010%%00009&quot;x&quot;: encodingX,%%00010%%00009&quot;y&quot;: encodingY,%%00010%%00009&quot;color&quot;: encodingColor%%00010}%%00010%%00010// create variables for the specification and the view inside that specification that%%00010// should be rendered%%00010const DEFAULT_SPEC = {&quot;$schema&quot;: &quot;https://vega.github.io/schema/vega-lite/v4.json&quot;};%%00010const spec = $${Svl_spec}$$ || DEFAULT_SPEC;%%00010const viewIndex = $${Sview_index}$$ || 0;%%00010%%00010// render the spec inside the created div container%%00010require([&quot;vega-embed&quot;, &quot;revize&quot;], function(vegaEmbed, revize) {%%00010%%00009%%00010%%00009let latestVersion = -1;%%00010%%00009let compiledSpec = null;%%00010%%00009%%00010%%00009function loadSpec(_spec, version, overwrite=true) {%%00010%%00009%%00009latestVersion = version;%%00010%%00009%%00009const specCompiler = new revize.SpecCompiler();%%00010%%00009%%00009const specParser = new revize.SpecParser();%%00010%%00009%%00009const dataNode = new revize.InlineDatasetNode();%%00010%%00009%%00009%%00010%%00009%%00009dataNode.values = items;%%00010%%00009%%00009%%00010%%00009%%00009const rootView = specParser.parse(_spec);%%00010%%00009%%00009const viewHierarchy = rootView.getFlatHierarchy();%%00010%%00009%%00009const selectedView = viewHierarchy[viewIndex];%%00010%%00010%%00009%%00009if (overwrite) {%%00010%%00009%%00009%%00009for (let encoding in encodings) {%%00010%%00009%%00009%%00009%%00009if (encodings[encoding].field !== &quot;&quot;) {%%00010%%00009%%00009%%00009%%00009%%00009selectedView.encodings.set(encoding, encodings[encoding]);%%00010%%00009%%00009%%00009%%00009}%%00010%%00009%%00009%%00009}%%00009%%00010%%00009%%00009}%%00010%%00009%%00009%%00010%%00009%%00009selectedView.dataTransformationNode = dataNode;%%00010%%00009%%00009%%00010%%00009%%00009const specWithEncodings = specCompiler.getVegaSpecification(rootView);%%00010%%00009%%00009%%00010%%00009%%00009vegaEmbed('#vis', specWithEncodings, {defaultStyle: true})%%00010%%00009%%00009%%00009.catch(console.warn);%%00010%%00010%%00009%%00009return specWithEncodings;%%00010%%00009}%%00010%%00010%%00009compiledSpec = loadSpec(spec, -1);%%00010%%00009revize.connect(&quot;http://localhost&quot;, 5000, &quot;test&quot;);%%00010%%00009revize.subscribeToRemoteChanges((externalSpec, version) =&gt; { %%00010%%00009%%00009console.log(&quot;received new version&quot;);%%00010%%00009%%00009loadSpec(externalSpec, version, false); %%00010%%00009});%%00010%%00010%%00009window.setTimeout(() =&gt; {%%00010%%00009%%00009console.log(&quot;sending KNIME spec to server&quot;);%%00010%%00009%%00009//revize.broadcastNewVersion(compiledSpec, latestVersion);%%00010%%00009%%00009revize.sendNewVersion(compiledSpec, latestVersion);%%00010%%00009%%00009loadSpec(spec, -1);%%00010%%00009}, 1500);%%00010});%%00010%%00010console.error(&quot;click here for debugging.&quot;);%%00010"/>
+<entry key="jsSVGCode" type="xstring" value=""/>
+<entry key="cssCode" type="xstring" value="body {%%00010    font-family: sans-serif;%%00010}%%00010h1 {%%00010    font-size: 1.5em;%%00010    font-weight: bold;%%00010}%%00010.success {%%00010    color: #006633;%%00010    font-weight: bold;%%00010}%%00010%%00010.failure {%%00010    color: #990000;%%00010    font-weight: bold;%%00010}%%00010"/>
+<config key="dependencies">
+<entry key="array-size" type="xint" value="0"/>
+</config>
+<entry key="waitTime" type="xint" value="0"/>
+<config key="outputVariables">
+<entry key="array-size" type="xint" value="0"/>
+</config>
+<entry key="customCSS" type="xstring" isnull="true" value=""/>
+</config>
+<entry key="customDescription" type="xstring" isnull="true" value=""/>
+<entry key="state" type="xstring" value="IDLE"/>
+<entry key="factory" type="xstring" value="org.knime.js.base.node.viz.generic3.GenericJSViewNodeFactory"/>
+<entry key="node-name" type="xstring" value="Generic JavaScript View"/>
+<entry key="node-bundle-name" type="xstring" value="KNIME JavaScript Base Views"/>
+<entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.js.views"/>
+<entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+<entry key="node-bundle-version" type="xstring" value="4.3.0.v202011211957"/>
+<entry key="node-feature-name" type="xstring" value="KNIME JavaScript Views"/>
+<entry key="node-feature-symbolic-name" type="xstring" value="org.knime.features.js.views.feature.group"/>
+<entry key="node-feature-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+<entry key="node-feature-version" type="xstring" value="4.3.0.v202011211957"/>
+<config key="factory_settings"/>
+<entry key="name" type="xstring" value="Generic JavaScript View"/>
+<entry key="hasContent" type="xboolean" value="false"/>
+<entry key="isInactive" type="xboolean" value="false"/>
+<config key="ports">
+<config key="port_1">
+<entry key="index" type="xint" value="1"/>
+<entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+</config>
+<config key="port_2">
+<entry key="index" type="xint" value="2"/>
+<entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+</config>
+</config>
+<config key="filestores">
+<entry key="file_store_location" type="xstring" isnull="true" value=""/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
+</config>
+</config>
