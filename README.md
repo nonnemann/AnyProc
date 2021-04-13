@@ -3,10 +3,5 @@ The project is currently running on OpenJDK on Java version 11.0.1 and is built 
 - GSON
 - Commons IO
 
-# Setup for stable release versions
-For the stable release version you just need to download the created files and start the .jar file (TODO)
-
-# Setup for development version
-1. Clone directory with ssh: git clone git@github.com:nonnemann/anyproc_public.git
-2. Import into Intellij as a Maven project
-3. Execute the class App.java
+# Setup
+Download the latestest [release](https://github.com/nonnemann/anyproc_public/releases) from this website and start the executable JAR
