@@ -11,4 +11,4 @@ Please make sure that you imported these dependencies correctly if you wish to c
 You can download the latestest [release](https://github.com/nonnemann/anyproc_public/releases) from this website and start the executable JAR to use AnyProc.
 
 # Getting Started
-Further information about the handling of the application are described in the wiki.
+Further information about the handling of the application are described in our [Development Wiki](https://github.com/nonnemann/AnyProc/wiki).
