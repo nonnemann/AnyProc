@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="main.Source">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="486" height="416"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="21171" class="javax.swing.JLabel" binding="sourceNameLabel">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <text value="Source"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
